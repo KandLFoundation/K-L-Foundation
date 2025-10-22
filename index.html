@@ -5,16 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>K&L Foundation | Helping Those in Need</title>
 <style>
+  :root {
+    --primary-color: #1a73e8;
+    --accent-color: #ff9800;
+    --secondary-color: #1abc9c;
+    --text-color: #222;
+    --bg-color: #fafafa;
+  }
+
   body {
     font-family: Arial, sans-serif;
     margin: 0;
-    background: #fafafa;
-    color: #222;
+    background: var(--bg-color);
+    color: var(--text-color);
     scroll-behavior: smooth;
   }
 
   header {
-    background: #1a73e8;
+    background: var(--primary-color);
     color: white;
     padding: 1rem 2rem;
     text-align: center;
@@ -49,7 +57,7 @@
 
   .hero-btn {
     display: inline-block;
-    background: #ff9800;
+    background: var(--accent-color);
     color: white;
     font-weight: bold;
     padding: 0.8rem 1.5rem;
@@ -71,13 +79,14 @@
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.8s ease, transform 0.8s ease;
+    will-change: opacity, transform;
   }
 
   section.visible { opacity: 1; transform: translateY(0); }
 
   h2 {
-    color: #1a73e8;
-    border-bottom: 2px solid #1a73e8;
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
     display: inline-block;
     margin-bottom: 1rem;
   }
@@ -89,15 +98,14 @@
     padding: 2rem 0;
   }
 
-  .card {
+  .card, .stat-card {
     background: white;
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.15);
     padding: 1rem;
     text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
-    opacity: 1;
-    transform: translateY(0);
+    transition: transform 0.3s, box-shadow 0.3s, opacity 0.8s, transform 0.8s;
+    will-change: transform, opacity;
   }
 
   .card img {
@@ -113,34 +121,22 @@
     box-shadow: 0 8px 16px rgba(0,0,0,0.25);
   }
 
-  .card h3 { margin: 0.5rem 0; color: #1a73e8; }
+  .card h3 { margin: 0.5rem 0; color: var(--primary-color); }
   .card p { font-size: 0.95rem; color: #555; }
 
-  .stat-card {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-  }
-
-  .stat-card.visible { opacity: 1; transform: translateY(0); }
-
   footer {
-    background: #1a73e8;
+    background: var(--primary-color);
     color: white;
     text-align: center;
     padding: 2rem 1rem;
     margin-top: 3rem;
   }
 
-  footer a {
-    color: #ffd700;
-    text-decoration: none;
-    font-weight: bold;
-  }
+  footer a { color: #ffd700; text-decoration: none; font-weight: bold; }
 
   #backToTop {
     position: fixed; bottom: 30px; right: 30px; display: none;
-    background:#1a73e8; color:white; border:none;
+    background: var(--primary-color); color:white; border:none;
     padding:0.8rem 1rem; border-radius:50px;
     cursor:pointer; font-weight:bold; z-index: 1000;
     transition: background 0.3s;
@@ -148,12 +144,7 @@
 
   #backToTop:hover { background: #155ab6; }
 
-  blockquote {
-    font-style: italic;
-    color: #555;
-    margin-top: 1.5rem;
-  }
-
+  blockquote { font-style: italic; color: #555; margin-top: 1.5rem; }
 </style>
 </head>
 <body>
@@ -180,15 +171,15 @@
   <p>K&L Foundation is a community-driven initiative based in South Africa, dedicated to helping those in need. We donate clothes, pads, food, and blankets to the less fortunate, ensuring that no one is left behind. We believe kindness can change lives, one act at a time.</p>
 
   <div style="display:flex; flex-wrap:wrap; gap:1rem; margin-top:2rem;">
-    <div class="stat-card" style="flex:1; min-width:200px; background:#1a73e8; color:white; padding:1rem; border-radius:10px; text-align:center;">
+    <div class="stat-card" style="flex:1; min-width:200px; background:var(--primary-color); color:white;">
       <h3 class="stat-number" data-target="25">0</h3>
       <p>People helped this year</p>
     </div>
-    <div class="stat-card" style="flex:1; min-width:200px; background:#ff9800; color:white; padding:1rem; border-radius:10px; text-align:center;">
+    <div class="stat-card" style="flex:1; min-width:200px; background:var(--accent-color); color:white;">
       <h3 class="stat-number" data-target="15">0</h3>
       <p>Clothes distributed</p>
     </div>
-    <div class="stat-card" style="flex:1; min-width:200px; background:#1abc9c; color:white; padding:1rem; border-radius:10px; text-align:center;">
+    <div class="stat-card" style="flex:1; min-width:200px; background:var(--secondary-color); color:white;">
       <h3 class="stat-number" data-target="20">0</h3>
       <p>Blankets donated</p>
     </div>
@@ -204,22 +195,22 @@
   <h2>Our Work</h2>
   <div class="work">
     <div class="card">
-      <img src="images/food.png" alt="Food Drives">
+      <img src="images/food.png" alt="Volunteers distributing food">
       <h3>Food Drives</h3>
       <p>Providing meals to communities facing hunger.</p>
     </div>
     <div class="card">
-      <img src="images/clothing.png" alt="Clothing Donations">
+      <img src="images/clothing.png" alt="Warm clothing distribution">
       <h3>Clothing Donations</h3>
       <p>Supplying warm clothes for children and adults.</p>
     </div>
     <div class="card">
-      <img src="images/SanitaryPads.png" alt="Sanitary Pads">
+      <img src="images/SanitaryPads.png" alt="Young women receiving sanitary pads">
       <h3>Sanitary Pads</h3>
       <p>Empowering young women through hygiene support.</p>
     </div>
     <div class="card">
-      <img src="images/Blankets.png" alt="Blanket Campaigns">
+      <img src="images/Blankets.png" alt="Blankets being distributed">
       <h3>Blanket Campaigns</h3>
       <p>Bringing comfort during the cold winter months.</p>
     </div>
@@ -248,7 +239,7 @@
 
 <button id="backToTop">↑ Top</button>
 
-<script>
+<script defer>
 // Fade-in sections
 const sections = document.querySelectorAll('section');
 const revealSection = () => {
@@ -259,10 +250,12 @@ const revealSection = () => {
 window.addEventListener('scroll', revealSection);
 window.addEventListener('load', revealSection);
 
-// Animate stats
+// Animate stats with one-time flag
 const stats = document.querySelectorAll('.stat-number');
 const statCards = document.querySelectorAll('.stat-card');
+let statsAnimated = false;
 function animateStats() {
+  if(statsAnimated) return;
   stats.forEach((stat, i) => {
     const target = +stat.getAttribute('data-target');
     let count = 0;
@@ -275,6 +268,7 @@ function animateStats() {
     update();
     statCards[i].classList.add('visible');
   });
+  statsAnimated = true;
 }
 
 window.addEventListener('scroll', () => {
