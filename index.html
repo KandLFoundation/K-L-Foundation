@@ -99,27 +99,68 @@
   <h2>Our Work</h2>
   <div class="work">
     <div class="card">
-      <img src="images/food.png" alt="Food Drives" style="width:100%; border-radius:10px;">
+      <img src="images/food.png" alt="Food Drives">
       <h3>Food Drives</h3>
       <p>Providing meals to communities facing hunger.</p>
     </div>
     <div class="card">
-      <img src="images/clothing.png" alt="Clothing Donations" style="width:100%; border-radius:10px;">
+      <img src="images/clothing.png" alt="Clothing Donations">
       <h3>Clothing Donations</h3>
       <p>Supplying warm clothes for children and adults.</p>
     </div>
     <div class="card">
-      <img src="images/Sanitary Pads.png" alt="Sanitary Pads" style="width:100%; border-radius:10px;">
+      <img src="images/Sanitary Pads.png" alt="Sanitary Pads">
       <h3>Sanitary Pads</h3>
       <p>Empowering young women through hygiene support.</p>
     </div>
     <div class="card">
-      <img src="images/Blankets.png" alt="Blanket Campaigns" style="width:100%; border-radius:10px;">
+      <img src="images/Blankets.png" alt="Blanket Campaigns">
       <h3>Blanket Campaigns</h3>
       <p>Bringing comfort during the cold winter months.</p>
     </div>
   </div>
 </section>
+
+<style>
+.work {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem 1rem;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  padding: 1rem;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 0.8rem;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.25);
+}
+
+.card h3 {
+  margin: 0.5rem 0;
+  color: #1a73e8;
+}
+
+.card p {
+  font-size: 0.95rem;
+  color: #555;
+}
+</style>
 
   <section id="help">
     <h2>How You Can Help</h2>
