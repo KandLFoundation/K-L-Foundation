@@ -91,9 +91,77 @@
   </div>
 
   <section id="about">
-    <h2>About Us</h2>
-    <p>K&L Foundation is a community-driven initiative based in South Africa, dedicated to helping those in need. We donate clothes, pads, food, and blankets to the less fortunate, ensuring that no one is left behind. We believe kindness can change lives, one act at a time.</p>
-  </section>
+  <h2>About Us</h2>
+  <p>K&L Foundation is a community-driven initiative based in South Africa, dedicated to helping those in need. We donate clothes, pads, food, and blankets to the less fortunate, ensuring that no one is left behind. We believe kindness can change lives, one act at a time.</p>
+  
+  <div style="display:flex; flex-wrap:wrap; gap:1rem; margin-top:2rem;">
+    <div class="stat-card" style="flex:1; min-width:200px; background:#1a73e8; color:white; padding:1rem; border-radius:10px; text-align:center;">
+      <h3 class="stat-number" data-target="25">0</h3>
+      <p>People helped this year</p>
+    </div>
+    <div class="stat-card" style="flex:1; min-width:200px; background:#ff9800; color:white; padding:1rem; border-radius:10px; text-align:center;">
+      <h3 class="stat-number" data-target="15">0</h3>
+      <p>Clothes distributed</p>
+    </div>
+    <div class="stat-card" style="flex:1; min-width:200px; background:#1abc9c; color:white; padding:1rem; border-radius:10px; text-align:center;">
+      <h3 class="stat-number" data-target="20">0</h3>
+      <p>Blankets donated</p>
+    </div>
+  </div>
+
+  <p style="margin-top:2rem;">Our mission is to create a compassionate community where everyone has access to basic needs. Our vision is a South Africa where no one sleeps hungry or cold, and young women have access to essential hygiene products.</p>
+</section>
+
+<!-- Back to top button -->
+<button id="backToTop" style="
+  position:fixed; bottom:30px; right:30px; display:none;
+  background:#1a73e8; color:white; border:none; padding:0.8rem 1rem;
+  border-radius:50px; cursor:pointer; font-weight:bold;
+">↑ Top</button>
+
+<script>
+// Scroll animation for stats
+const stats = document.querySelectorAll('.stat-number');
+
+function animateStats() {
+  stats.forEach(stat => {
+    const target = +stat.getAttribute('data-target');
+    let count = 0;
+    const increment = target / 100;
+
+    const update = () => {
+      count += increment;
+      if(count < target) {
+        stat.innerText = Math.ceil(count);
+        requestAnimationFrame(update);
+      } else {
+        stat.innerText = target;
+      }
+    };
+    update();
+  });
+}
+
+window.addEventListener('scroll', () => {
+  const section = document.getElementById('about');
+  const sectionTop = section.getBoundingClientRect().top;
+  const trigger = window.innerHeight / 1.2;
+  if(sectionTop < trigger) animateStats();
+});
+
+// Back-to-top button
+const backToTop = document.getElementById('backToTop');
+
+window.addEventListener('scroll', () => {
+  if(window.scrollY > 300) backToTop.style.display = 'block';
+  else backToTop.style.display = 'none';
+});
+
+backToTop.addEventListener('click', () => {
+  window.scrollTo({top:0, behavior:'smooth'});
+});
+</script>
+
 
 <section id="work">
   <h2>Our Work</h2>
