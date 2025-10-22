@@ -1,157 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>K&L Foundation | Helping Those in Need</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background: #fafafa;
-      color: #222;
-      scroll-behavior: smooth;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>K&L Foundation | Helping Those in Need</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #fafafa;
+    color: #222;
+    scroll-behavior: smooth;
+  }
 
-    header {
-      background: #1a73e8;
-      color: white;
-      padding: 1rem 2rem;
-      text-align: center;
-    }
+  header {
+    background: #1a73e8;
+    color: white;
+    padding: 1rem 2rem;
+    text-align: center;
+  }
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 1rem;
-      font-weight: bold;
-      transition: color 0.3s;
-    }
+  nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 1rem;
+    font-weight: bold;
+    transition: color 0.3s;
+  }
 
-    nav a:hover { color: #ffd700; }
+  nav a:hover { color: #ffd700; }
 
-    .hero {
-      background: url('https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-      color: white;
-      text-align: center;
-      padding: 6rem 1rem;
-      position: relative;
-    }
+  .hero {
+    background: url('https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+    color: white;
+    text-align: center;
+    padding: 6rem 1rem;
+    position: relative;
+  }
 
-    .hero h1 {
-      font-size: 2.5rem;
-      background: rgba(0,0,0,0.5);
-      display: inline-block;
-      padding: 1rem 2rem;
-      border-radius: 10px;
-      margin-bottom: 1.5rem;
-    }
+  .hero h1 {
+    font-size: 2.5rem;
+    background: rgba(0,0,0,0.5);
+    display: inline-block;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+  }
 
-    .hero-btn {
-      display: inline-block;
-      background: #ff9800;
-      color: white;
-      font-weight: bold;
-      padding: 0.8rem 1.5rem;
-      border-radius: 5px;
-      text-decoration: none;
-      font-size: 1.1rem;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
+  .hero-btn {
+    display: inline-block;
+    background: #ff9800;
+    color: white;
+    font-weight: bold;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
 
-    .hero-btn:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    }
+  .hero-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  }
 
-    section {
-      padding: 3rem 1.5rem;
-      max-width: 900px;
-      margin: auto;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
+  section {
+    padding: 3rem 1.5rem;
+    max-width: 900px;
+    margin: auto;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
 
-    section.visible { opacity: 1; transform: translateY(0); }
+  section.visible { opacity: 1; transform: translateY(0); }
 
-    h2 {
-      color: #1a73e8;
-      border-bottom: 2px solid #1a73e8;
-      display: inline-block;
-      margin-bottom: 1rem;
-    }
+  h2 {
+    color: #1a73e8;
+    border-bottom: 2px solid #1a73e8;
+    display: inline-block;
+    margin-bottom: 1rem;
+  }
 
-    .work {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.5rem;
-      padding: 2rem 0;
-    }
+  .work {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem 0;
+  }
 
-    .card {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-      padding: 1rem;
-      text-align: center;
-      transition: transform 0.3s, box-shadow 0.3s, opacity 0.6s ease, transform 0.6s ease;
-      opacity: 0;
-      transform: translateY(20px);
-    }
+  .card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    padding: 1rem;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    opacity: 1;
+    transform: translateY(0);
+  }
 
-    .card.visible { opacity: 1; transform: translateY(0); }
+  .card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 0.8rem;
+  }
 
-    .card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      border-radius: 10px;
-      margin-bottom: 0.8rem;
-    }
+  .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.25);
+  }
 
-    .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 8px 16px rgba(0,0,0,0.25);
-    }
+  .card h3 { margin: 0.5rem 0; color: #1a73e8; }
+  .card p { font-size: 0.95rem; color: #555; }
 
-    .card h3 { margin: 0.5rem 0; color: #1a73e8; }
-    .card p { font-size: 0.95rem; color: #555; }
+  .stat-card {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
 
-    .stat-card {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
+  .stat-card.visible { opacity: 1; transform: translateY(0); }
 
-    .stat-card.visible { opacity: 1; transform: translateY(0); }
+  footer {
+    background: #1a73e8;
+    color: white;
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-top: 3rem;
+  }
 
-    footer {
-      background: #1a73e8;
-      color: white;
-      text-align: center;
-      padding: 2rem 1rem;
-      margin-top: 3rem;
-    }
+  footer a {
+    color: #ffd700;
+    text-decoration: none;
+    font-weight: bold;
+  }
 
-    footer a {
-      color: #ffd700;
-      text-decoration: none;
-      font-weight: bold;
-    }
+  #backToTop {
+    position: fixed; bottom: 30px; right: 30px; display: none;
+    background:#1a73e8; color:white; border:none;
+    padding:0.8rem 1rem; border-radius:50px;
+    cursor:pointer; font-weight:bold; z-index: 1000;
+    transition: background 0.3s;
+  }
 
-    #backToTop {
-      position: fixed; bottom: 30px; right: 30px; display: none;
-      background:#1a73e8; color:white; border:none;
-      padding:0.8rem 1rem; border-radius:50px;
-      cursor:pointer; font-weight:bold; z-index: 1000;
-      transition: background 0.3s;
-    }
+  #backToTop:hover { background: #155ab6; }
 
-    #backToTop:hover { background: #155ab6; }
-  </style>
+  blockquote {
+    font-style: italic;
+    color: #555;
+    margin-top: 1.5rem;
+  }
+
+</style>
 </head>
 <body>
+
 <header>
   <img src="logo.png" alt="K&L Foundation Logo" style="height:80px;">
   <h1>K&L Foundation</h1>
@@ -190,8 +196,8 @@
 
   <p style="margin-top:2rem;">Our mission is to create a compassionate community where everyone has access to basic needs. Our vision is a South Africa where no one sleeps hungry or cold, and young women have access to essential hygiene products.</p>
 
-  <blockquote style="margin-top:2rem; font-style:italic; color:#555;">“The smallest act of kindness is worth more than the grandest intention.” – K&L Foundation</blockquote>
-  <blockquote style="margin-top:1rem; font-style:italic; color:#555;">“Helping one person might not change the world, but it could change the world for one person.” – K&L Foundation</blockquote>
+  <blockquote>“The smallest act of kindness is worth more than the grandest intention.” – K&L Foundation</blockquote>
+  <blockquote>“Helping one person might not change the world, but it could change the world for one person.” – K&L Foundation</blockquote>
 </section>
 
 <section id="work">
@@ -208,7 +214,7 @@
       <p>Supplying warm clothes for children and adults.</p>
     </div>
     <div class="card">
-      <img src="images/Sanitary Pads.png" alt="Sanitary Pads">
+      <img src="images/SanitaryPads.png" alt="Sanitary Pads">
       <h3>Sanitary Pads</h3>
       <p>Empowering young women through hygiene support.</p>
     </div>
@@ -247,47 +253,33 @@
 const sections = document.querySelectorAll('section');
 const revealSection = () => {
   sections.forEach(section => {
-    const top = section.getBoundingClientRect().top;
-    const trigger = window.innerHeight / 1.1;
-    if(top < trigger) section.classList.add('visible');
+    if(section.getBoundingClientRect().top < window.innerHeight / 1.1) section.classList.add('visible');
   });
 };
 window.addEventListener('scroll', revealSection);
 window.addEventListener('load', revealSection);
 
-// Fade-in cards
-const cards = document.querySelectorAll('.card');
-const revealCards = () => {
-  cards.forEach(card => {
-    const top = card.getBoundingClientRect().top;
-    const trigger = window.innerHeight / 1.1;
-    if(top < trigger) card.classList.add('visible');
-  });
-};
-window.addEventListener('scroll', revealCards);
-window.addEventListener('load', revealCards);
-
 // Animate stats
 const stats = document.querySelectorAll('.stat-number');
+const statCards = document.querySelectorAll('.stat-card');
 function animateStats() {
-  stats.forEach(stat => {
+  stats.forEach((stat, i) => {
     const target = +stat.getAttribute('data-target');
     let count = 0;
     const increment = target / 100;
     const update = () => {
       count += increment;
+      stat.innerText = count < target ? Math.ceil(count) : target;
       if(count < target) requestAnimationFrame(update);
-      stat.innerText = Math.ceil(count);
     };
     update();
+    statCards[i].classList.add('visible');
   });
 }
 
 window.addEventListener('scroll', () => {
   const aboutSection = document.getElementById('about');
-  const sectionTop = aboutSection.getBoundingClientRect().top;
-  const trigger = window.innerHeight / 1.2;
-  if(sectionTop < trigger) animateStats();
+  if(aboutSection.getBoundingClientRect().top < window.innerHeight / 1.2) animateStats();
 });
 
 // Back-to-top button
