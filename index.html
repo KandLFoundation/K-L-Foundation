@@ -285,18 +285,17 @@
 const sections = document.querySelectorAll('section');
 const revealSection = () => {
   sections.forEach(section => {
-    if(section.getBoundingClientRect().top < window.innerHeight / 1.1) section.classList.add('visible');
+    if (section.getBoundingClientRect().top < window.innerHeight / 1.1)
+      section.classList.add('visible');
   });
 };
-window.addEventListener('scroll', revealSection);
-window.addEventListener('load', revealSection);
 
 // Animate stats with one-time flag
 const stats = document.querySelectorAll('.stat-number');
 const statCards = document.querySelectorAll('.stat-card');
 let statsAnimated = false;
 function animateStats() {
-  if(statsAnimated) return;
+  if (statsAnimated) return;
   stats.forEach((stat, i) => {
     const target = +stat.getAttribute('data-target');
     let count = 0;
@@ -304,7 +303,7 @@ function animateStats() {
     const update = () => {
       count += increment;
       stat.innerText = count < target ? Math.ceil(count) : target;
-      if(count < target) requestAnimationFrame(update);
+      if (count < target) requestAnimationFrame(update);
     };
     update();
     statCards[i].classList.add('visible');
@@ -312,28 +311,38 @@ function animateStats() {
   statsAnimated = true;
 }
 
-window.addEventListener('scroll', () => {
-  const aboutSection = document.getElementById('about');
-  if(aboutSection.getBoundingClientRect().top < window.innerHeight / 1.2) animateStats();
-});
-
 // Back-to-top button
 const backToTop = document.getElementById('backToTop');
 window.addEventListener('scroll', () => {
   backToTop.style.display = window.scrollY > 300 ? 'block' : 'none';
 });
 backToTop.addEventListener('click', () => {
-  window.scrollTo({top:0, behavior:'smooth'});
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-  window.addEventListener("load", () => {
+// Unified load event
+window.addEventListener("load", () => {
+  // Show intro screen, then remove it
   const intro = document.getElementById("intro-screen");
   setTimeout(() => {
     intro.classList.add("hidden");
-    setTimeout(() => intro.remove(), 1500); // completely remove after fade
-  }, 5000); // 5 seconds display
+    setTimeout(() => intro.remove(), 1500);
+  }, 5000); // visible for 5 seconds
+
+  // After intro ends, trigger reveal animation once
+  setTimeout(() => {
+    revealSection();
+    window.addEventListener('scroll', revealSection);
+  }, 6500);
 });
-  
+
+// Scroll trigger for stats
+window.addEventListener('scroll', () => {
+  const aboutSection = document.getElementById('about');
+  if (aboutSection.getBoundingClientRect().top < window.innerHeight / 1.2)
+    animateStats();
+});
 </script>
 </body>
 </html>
+
