@@ -285,12 +285,14 @@
 const sections = document.querySelectorAll('section');
 const revealSection = () => {
   sections.forEach(section => {
-    if (section.getBoundingClientRect().top < window.innerHeight / 1.1)
+    if(section.getBoundingClientRect().top < window.innerHeight / 1.1)
       section.classList.add('visible');
   });
 };
+window.addEventListener('scroll', revealSection);
+window.addEventListener('load', revealSection);
 
-// Animate stats with one-time flag
+// Animate stats once
 const stats = document.querySelectorAll('.stat-number');
 const statCards = document.querySelectorAll('.stat-card');
 let statsAnimated = false;
@@ -310,6 +312,11 @@ function animateStats() {
   });
   statsAnimated = true;
 }
+window.addEventListener('scroll', () => {
+  const aboutSection = document.getElementById('about');
+  if (aboutSection.getBoundingClientRect().top < window.innerHeight / 1.2)
+    animateStats();
+});
 
 // Back-to-top button
 const backToTop = document.getElementById('backToTop');
@@ -317,30 +324,26 @@ window.addEventListener('scroll', () => {
   backToTop.style.display = window.scrollY > 300 ? 'block' : 'none';
 });
 backToTop.addEventListener('click', () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  window.scrollTo({top:0, behavior:'smooth'});
 });
 
-// Unified load event
-window.addEventListener("load", () => {
-  // Show intro screen, then remove it
-  const intro = document.getElementById("intro-screen");
+// Intro screen fade + voice
+window.addEventListener('load', () => {
+  const intro = document.getElementById('intro-screen');
+  
+  // Speak welcome message
+  const message = new SpeechSynthesisUtterance("Welcome to K and L Foundation");
+  message.pitch = 1;
+  message.rate = 1;
+  message.volume = 1;
+  message.lang = "en-ZA"; // South African English voice
+  window.speechSynthesis.speak(message);
+
+  // Fade out intro screen
   setTimeout(() => {
-    intro.classList.add("hidden");
+    intro.classList.add('hidden');
     setTimeout(() => intro.remove(), 1500);
-  }, 5000); // visible for 5 seconds
-
-  // After intro ends, trigger reveal animation once
-  setTimeout(() => {
-    revealSection();
-    window.addEventListener('scroll', revealSection);
-  }, 6500);
-});
-
-// Scroll trigger for stats
-window.addEventListener('scroll', () => {
-  const aboutSection = document.getElementById('about');
-  if (aboutSection.getBoundingClientRect().top < window.innerHeight / 1.2)
-    animateStats();
+  }, 5000);
 });
 </script>
 </body>
