@@ -332,12 +332,21 @@ window.addEventListener('load', () => {
   const intro = document.getElementById('intro-screen');
   
   // Speak welcome message
-  const message = new SpeechSynthesisUtterance("Welcome to K and L Foundation");
-  message.pitch = 1;
-  message.rate = 1;
-  message.volume = 1;
-  message.lang = "en-ZA"; // South African English voice
-  window.speechSynthesis.speak(message);
+// Intro screen fade + audio
+window.addEventListener('load', () => {
+  const intro = document.getElementById('intro-screen');
+  
+  // Play welcome audio
+  const audio = new Audio('welcome.mp3'); // make sure this file exists in the same folder
+  audio.volume = 1; // adjust 0–1
+  audio.play().catch(err => console.log("Audio autoplay prevented:", err));
+
+  // Fade out intro screen
+  setTimeout(() => {
+    intro.classList.add('hidden');
+    setTimeout(() => intro.remove(), 1500);
+  }, 5000); // 5 seconds display
+});
 
   // Fade out intro screen
   setTimeout(() => {
