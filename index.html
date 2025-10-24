@@ -327,34 +327,20 @@ backToTop.addEventListener('click', () => {
   window.scrollTo({top:0, behavior:'smooth'});
 });
 
-// Intro screen fade + voice
+// Intro screen fade + audio (fixed)
 window.addEventListener('load', () => {
   const intro = document.getElementById('intro-screen');
-  
-  // Speak welcome message
-// Intro screen fade + audio
-window.addEventListener('load', () => {
-  const intro = document.getElementById('intro-screen');
-  
+
   // Play welcome audio
-  const audio = new Audio('Welcome.mp3'); // make sure this file exists in the same folder
-  audio.volume = 1; // adjust 0–1
+  const audio = new Audio('Welcome.mp3'); // make sure file exists in same folder
+  audio.volume = 1;
   audio.play().catch(err => console.log("Audio autoplay prevented:", err));
 
-  // Fade out intro screen
+  // Fade out intro screen after 5 seconds
   setTimeout(() => {
     intro.classList.add('hidden');
-    setTimeout(() => intro.remove(), 1500);
-  }, 5000); // 5 seconds display
-});
-
-  // Fade out intro screen
-  setTimeout(() => {
-    intro.classList.add('hidden');
-    setTimeout(() => intro.remove(), 1500);
+    setTimeout(() => intro.remove(), 1500); // remove from DOM after fade
   }, 5000);
 });
 </script>
-</body>
-</html>
 
