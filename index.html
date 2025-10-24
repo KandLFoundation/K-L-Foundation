@@ -331,14 +331,22 @@ backToTop.addEventListener('click', () => {
 window.addEventListener('load', () => {
   const intro = document.getElementById('intro-screen');
 
-  // SpeechSynthesis welcome
+ document.getElementById('start-btn').addEventListener('click', () => {
+  const intro = document.getElementById('intro-screen');
+  
+  // Play Speech
   const welcomeMessage = new SpeechSynthesisUtterance("Welcome to K and L Foundation");
-  welcomeMessage.volume = 1; // medium volume (0 to 1)
-  welcomeMessage.rate = 1;     // normal speed
-  welcomeMessage.pitch = 1;    // normal pitch
-  welcomeMessage.lang = 'en-ZA'; // South African English
-
+  welcomeMessage.volume = 0.5;
+  welcomeMessage.rate = 1;
+  welcomeMessage.pitch = 1;
+  welcomeMessage.lang = 'en-ZA';
   window.speechSynthesis.speak(welcomeMessage);
+
+  // Fade out screen
+  intro.classList.add('hidden');
+  setTimeout(() => intro.remove(), 1500);
+});
+
 
   // Fade out intro screen after 5 seconds
   setTimeout(() => {
